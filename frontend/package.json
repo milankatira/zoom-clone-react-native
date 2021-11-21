@@ -1,5 +1,6 @@
 {
   "main": "node_modules/expo/AppEntry.js",
+  "proxy": "http://dd9a-2402-3a80-1ce6-d6c5-8cfc-551b-793a-653f.ngrok.io",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
@@ -19,7 +20,8 @@
     "react-native-safe-area-context": "3.3.2",
     "react-native-screens": "~3.8.0",
     "react-native-vector-icons": "^9.0.0",
-    "react-native-web": "0.17.1"
+    "react-native-web": "0.17.1",
+    "socket.io-client": "^4.4.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"

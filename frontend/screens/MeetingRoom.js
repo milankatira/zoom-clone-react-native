@@ -1,38 +1,34 @@
 import React from "react";
 import { StyleSheet, TextInput, Text, View } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import StartMeeting from "../components/StartMeeting";
+import { io } from "socket.io-client";
 
+let socket;
 const MeetingRoom = () => {
-  const [text, setText] = React.useState("ok");
+  const [text, setText] = React.useState("");
   const [roomid, setroomId] = React.useState("");
+  React.useEffect(() => {
+    const Api_url = "/";
+    socket = io(`${Api_url}`);
+    console.warn('okkk')
+    socket.on(() => console.warn("connected"));
+
+    fetch(`${Api_url}`)
+      .then((res) => {
+        console.warn(res);
+      })
+      .catch((err) => {
+        console.warn(err);
+      });
+  }, []);
   return (
     <View style={styles.container}>
-      <View style={styles.startMeetingContainer}>
-        <View style={styles.info}>
-          <TextInput
-            style={styles.textInput}
-            value={text}
-            placeholder="Enter name"
-            placeholderTextColor="#767476"
-            onChangeText={(text) => setText(text)}
-          ></TextInput>
-        </View>
-        <View style={styles.info}>
-          <TextInput
-            style={styles.textInput}
-            value={roomid}
-            placeholder="Enter roomId"
-            placeholderTextColor="#767476"
-            onChangeText={(text) => setroomId(text)}
-          ></TextInput>
-        </View>
-
-        <View style={{ alignItems: "center" }}>
-          <TouchableOpacity style={styles.startMeetingButton} onPress={() => {}}>
-            <Text style={styles.startMeetingText}>Start Meeting</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
+      <StartMeeting
+        text={text}
+        setText={setText}
+        setroomId={setroomId}
+        roomid={roomid}
+      />
     </View>
   );
 };
@@ -43,35 +39,5 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "#1c1c1c",
     flex: 1,
-  },
-  startMeetingContainer: {},
-  info: {
-    width: "100%",
-    backgroundColor: "#373538",
-    height: 50,
-    borderTopWidth: 1,
-    borderBottomWidth: 1,
-    borderColor: "#484648",
-    padding: 12,
-    justifyContent: "center",
-  },
-  textInput: {
-    color: "white",
-    fontSize: 18,
-  },
-  startMeeting: {},
-  startMeetingText: {
-    color: "white",
-    fontWeight:'bold'
-  },
-  startMeetingButton: {
-    width:350,
-    marginTop:20,
-    justifyContent: "center",
-    alignItems:'center',
-    backgroundColor: "#0470DC",
-    height:50,
-    borderRadius:15,
-
   },
 });

@@ -32,7 +32,7 @@ const MenuButtons = ({ navigation }) => {
   return (
     <View style={styles.container}>
       {items.map((item, index) => (
-        <View style={styles.buttonContainer}>
+        <View style={styles.buttonContainer} key={index}>
           <TouchableOpacity
             onPress={() => openMeeting()}
             style={{

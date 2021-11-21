@@ -26,6 +26,6 @@ const styles = StyleSheet.create({
   heading: {
     color: "#efefef",
     fontSize: 20,
-    fontWight: 700,
+    fontWeight: '700',
   },
 });
